@@ -11,6 +11,10 @@ returned by this function are by no means definitive, but they're probably relat
 
 At the moment, this function has been tested with the 2024 Spring, Summer, and Fall SSBs. I'll be ensuring compatibility with the 2025 Spring SSB once it's released. 
 
+# Dependencies
+
+This program requires Python3. Further dependencies include PyMuPDF and tqdm, which can be installed with pip3. 
+
 # Usage
 
 Note that you'll have to download the SSB from UNC's website and replace the ```'pdf_file_goes_here'``` in ```PDFScraper.py``` with the pathname to the downloaded SSB file, ensuring
