@@ -57,6 +57,3 @@ if __name__ == '__main__':
                 clear_input = input().lower().strip()
             if clear_input == 'yes':
                 system('clear')
-
-
-

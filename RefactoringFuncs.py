@@ -2,54 +2,91 @@ from collections import defaultdict
 from bisect import insort
 import re
 
+
 def hall_refactor(hall):
-    buildings = {'Global Center', 'Administrative Offic', 'Brauer Hall', 'Koury Oral Health Sc', 'Wilson Library', 'Abernethy Hall', 'Rams Head Recreation', 'Loudermilk Hall', 'Genetic Medicine Res', 'Love House', 'Naval Armory', 'Mary Ellen Jones', 'McColl Bldg', 'Howell Hall', 'Swain Hall', 'Phillips Hall', 'Graham Student Union', 'Bioinformatics Bldg', 'Communication Media ', 'Bondurant Hall', 'Campus Y', 'Smith Middle School ', 'Hooker Research Cent', 'Medical Biomolecular', 'Graham Memorial', 'Fetzer Hall', 'Person Hall', 'Van Hecke-Wettach Ha', 'MacNider Hall', 'Global Education, Fe', 'Kerr Hall', 'Kenan Labs', 'Kenan Center', 'New East', 'McGavran-Greenberg H', 'Art Studio Bldg', 'Gardner Hall', 'Murray Hall', 'Hanes Hall', 'Coker Hall', 'Curtis Media Center', 'ITS Manning', 'Genome Sciences Buil', 'Koury Res Hall', 'Carolina Hall', 'Craige North Res Hal', 'Manning Hall', 'Hamilton Hall', 'Health Sciences Libr', 'Greenlaw Hall', 'Mitchell Hall', 'Tate-Turner-Kuralt B', 'Rosenau Hall', 'Kenan Music Bldg', 'Davie Hall', 'Paul Green Theater ', 'Marsico Hall', 'Murphey Hall', 'Woollen Gym', 'Smith Bldg', 'Gillings Dramatic Ar', 'Karpen Hall', 'Hill Hall', 'Dey Hall', 'Carroll Hall', 'Cobb Res Hall', 'New West', 'Sitterson Hall (incl', 'Stone Center', 'Alumni Bldg', 'Chapman Hall', 'Knapp-Sanders Bldg ', 'Morehead Chemistry L', 'Peabody Hall', 'Venable Hall', 'Wilson Hall', 'Caldwell Hall', 'Hanes Art Center', 'Beard Hall'}
-    if hall in buildings:
-        if hall == 'Mary Ellen Jones':
-            return 'Mary Ellen Jones Bldg'
-        elif hall == 'Hooker Research Cent':
-            return 'Hooker Research Center'
-        elif hall == 'Medical Biomolecular':
-            return 'Medical Biomolecular Research Bldg'
-        elif hall == 'Graham Memorial':
-            return 'Graham Memorial Hall'
-        elif hall == 'Van Hecke-Wettach Ha':
-            return 'Van Hecke-Wettach Hall'
-        elif hall == 'Global Education, Fe':
-            return 'FedEx Global Education Center'
-        elif hall == 'McGavran-Greenberg H':
-            return 'McGavran-Greenberg Hall'
-        elif hall == 'Genome Sciences Buil':
-            return 'Genome Sciences Bldg'
-        elif hall == 'Koury Res Hall':
-            return 'Koury Residence Hall'
-        elif hall == 'Craige North Res Hal':
-            return 'Craige North Residence Hall'
-        elif hall == 'Health Sciences Libr':
-            return 'Health Sciences Library'
-        elif hall == 'Tate-Turner-Kuralt B':
-            return 'Tate-Turner-Kuralt Bldg'
-        elif hall == 'Gillings Dramatic Ar':
-            return 'Center for Dramatic Art'
-        elif hall == 'Cobb Res Hall':
-            return 'Cobb Residence Hall'
-        elif hall == 'Sitterson Hall (incl':
-            return 'Sitterson Hall'
-        elif hall == 'Morehead Chemistry L':
-            return 'Morehead Chemistry Labs'
-        elif hall == 'Genetic Medicine Res':
-            return 'Genetic Medicine Research Bldg'
-        elif hall == 'Rams Head Recreation':
-            return 'Rams Head Recreation Center'
-        elif hall == 'Koury Oral Health Sc':
-            return 'Koury Oral Health Sciences Bldg'
-        elif hall == 'Administrative Offic':
-            return 'Administrative Office Bldg'
-        elif hall == 'Global Center':
-            return 'FedEx Global Education Center'
-        else:
-            return hall.lower().strip()
+    buildings = {'Global Center': 'FedEx Global Education Center',
+                 'Administrative Offic': 'Administrative Office Bldg',
+                 'Brauer Hall': 'Brauer Hall',
+                 'Koury Oral Health Sc': 'Koury Oral Health Sciences Bldg',
+                 'Wilson Library': 'Wilson Library',
+                 'Abernethy Hall': 'Abernathy Hall',
+                 'Rams Head Recreation': 'Rams Head Recreation Center',
+                 'Loudermilk Hall': 'Loudermilk Hall',
+                 'Genetic Medicine Res': 'Genetic Medicine Research Bldg',
+                 'Love House': 'Love House',
+                 'Naval Armory': 'Naval Armory',
+                 'Mary Ellen Jones': 'Mary Ellen Jones Bldg',
+                 'McColl Bldg': 'McColl Bldg',
+                 'Howell Hall': 'Howell Hall',
+                 'Swain Hall': 'Swain Hall',
+                 'Phillips Hall': 'Phillips Hall',
+                 'Graham Student Union': 'Graham Student Union',
+                 'Bioinformatics Bldg': 'Bioinformatics Bldg',
+                 'Communication Media ': 'Communication Media',
+                 'Bondurant Hall': 'Bondurant Hall',
+                 'Campus Y': 'Campus Y',
+                 'Smith Middle School ': 'Smith Middle School',
+                 'Hooker Research Cent': 'Hooker Research Center',
+                 'Medical Biomolecular': 'Medical Biomolecular Research Bldg',
+                 'Graham Memorial': 'Graham Memorial Hall',
+                 'Fetzer Hall': 'Fetzer Hall',
+                 'Person Hall': 'Person Hall',
+                 'Van Hecke-Wettach Ha': 'Van Hecke-Wettach Hall',
+                 'MacNider Hall': 'MacNider Hall',
+                 'Global Education, Fe': 'FedEx Global Education Center',
+                 'Kerr Hall': 'Kerr Hall',
+                 'Kenan Labs': 'Kenan Labs',
+                 'Kenan Center': 'Kenan Center',
+                 'New East': 'New East',
+                 'McGavran-Greenberg H': 'McGavran-Greenberg Hall',
+                 'Art Studio Bldg': 'Art Studio Bldg',
+                 'Gardner Hall': 'Gardner Hall',
+                 'Murray Hall': 'Murray Hall',
+                 'Hanes Hall': 'Hanes Hall',
+                 'Coker Hall': 'Coker Hall',
+                 'Curtis Media Center': 'Curtis Media Center',
+                 'ITS Manning': 'ITS Manning',
+                 'Genome Sciences Buil': 'Genome Sciences Bldg',
+                 'Koury Res Hall': 'Koury Residence Hall',
+                 'Carolina Hall': 'Carolina Hall',
+                 'Craige North Res Hal': 'Craige North Residence Hall',
+                 'Manning Hall': 'Manning Hall',
+                 'Hamilton Hall': 'Hamilton Hall',
+                 'Health Sciences Libr': 'Health Sciences Library',
+                 'Greenlaw Hall': 'Greenlaw Hall',
+                 'Mitchell Hall': 'Mitchell Hall',
+                 'Tate-Turner-Kuralt B': 'Tate-Turner-Kuralt Bldg',
+                 'Rosenau Hall': 'Rosenau Hall',
+                 'Kenan Music Bldg': 'Kenan Music Bldg',
+                 'Davie Hall': 'Davie Hall',
+                 'Paul Green Theater ': 'Paul Green Theater ',  # Why extra space here?
+                 'Marsico Hall': 'Marsico Hall',
+                 'Murphey Hall': 'Murphey Hall',
+                 'Woollen Gym': 'Woollen Gym',
+                 'Smith Bldg': 'Smith Bldg',
+                 'Gillings Dramatic Ar': 'Center for Dramatic Art',
+                 'Karpen Hall': 'Karpen Hall',
+                 'Hill Hall': 'Hill Hall',
+                 'Dey Hall': 'Dey Hall',
+                 'Carroll Hall': 'Carroll Hall',
+                 'Cobb Res Hall': 'Cobb Residence Hall',
+                 'New West': 'New West',
+                 'Sitterson Hall (incl': 'Sitterson Hall',
+                 'Stone Center': 'Stone Center',
+                 'Alumni Bldg': 'Alumni Bldg',
+                 'Chapman Hall': 'Chapman Hall',
+                 'Knapp-Sanders Bldg ': 'Knapp-Sanders Bldg',
+                 'Morehead Chemistry L': 'Morehead Chemistry Labs',
+                 'Peabody Hall': 'Peabody Hall',
+                 'Venable Hall': 'Venable Hall',
+                 'Wilson Hall': 'Wilson Hall',
+                 'Caldwell Hall': 'Caldwell Hall',
+                 'Hanes Art Center': 'Hanes Art Center',
+                 'Beard Hall': 'Beard Hall'}
+    if hall in buildings.keys():
+        return buildings[hall].lower().strip()
     raise Exception('Building not in building set')
+
 
 def time_refactor(time):
     time = time.replace(':', '')
@@ -92,16 +129,17 @@ def military_to_standard(time):
         time = re.sub(reg_match[i], reg_repl[i], time)
     return time
 
+
 def title_refactor(building):
     if building == 'its manning':
-        return('ITS Manning')
+        return ('ITS Manning')
     elif building == 'mcgavran-greenberg hall':
-        return('McGavran-Greenberg Hall')
+        return ('McGavran-Greenberg Hall')
     elif building == 'mccoll bldg':
-        return('McColl Bldg')
+        return ('McColl Bldg')
     elif building == 'fedex global education center':
-        return('FedEx Global Education Center')
+        return ('FedEx Global Education Center')
     elif building == 'macnider hall':
-        return('Macnider Hall')
+        return ('Macnider Hall')
     else:
-        return(f'{building.title()}')
+        return (f'{building.title()}')
