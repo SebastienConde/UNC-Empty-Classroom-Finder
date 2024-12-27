@@ -17,5 +17,5 @@ Note that you'll have to download the SSB from UNC's website and replace the ```
 to keep the quotation marks around the pathname. 
 
 Once this is completed, and assuming all dependencies are installed, the project should be pretty straightforward to use - just answer the question prompts. Please note that at the moment, 
-this project only can show the schedule of a given room. You can check when, for example, Phillips Hall 0215 is available, but you can't search for all available rooms in Phillips Hall 
+this project only can show the schedule of a given room. You can check, for example, when Phillips Hall 0215 is available, but you can't search for all available rooms in Phillips Hall 
 at a given time. That might be something that's coming in the future if people want it, however. 
