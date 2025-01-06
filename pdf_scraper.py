@@ -2,8 +2,8 @@ import pymupdf
 import re
 from collections import defaultdict
 from tqdm import tqdm
-from CollegeClass import CollegeClass
-from RefactoringFuncs import hall_refactor
+from college_class import CollegeClass
+from refactoring_funcs import hall_refactor
 
 doc = r'pdf_file_goes_here'
 

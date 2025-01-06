@@ -1,5 +1,5 @@
-from PDFScraper import *
-from RefactoringFuncs import day_refactor, military_to_standard, title_refactor
+from pdf_scraper import *
+from refactoring_funcs import day_refactor, military_to_standard, title_refactor
 from os import system
 
 if __name__ == '__main__':
