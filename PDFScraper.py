@@ -5,7 +5,7 @@ from tqdm import tqdm
 from CollegeClass import CollegeClass
 from RefactoringFuncs import hall_refactor
 
-doc = 'pdf_file_goes_here'
+doc = r'pdf_file_goes_here'
 
 bldg_pattern = r'(?s)Bldg: (.*?)(?=Room|\n)'  # matches 'Bldg: "
 room_pattern = r'(?s)Room: (.*?)(?=Days|\n)'  # matches 'Room: '"

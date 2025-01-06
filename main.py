@@ -6,7 +6,7 @@ if __name__ == '__main__':
     pdf_scraper()
     cont = True
     while cont:
-        print('Please enter a building. If you would like a list of buildings to choose from, enter "Building List":')
+        print('Please enter a building. If you would like a list of buildings to choose from, enter "Building List" (without quotes):')
         building_input = input().lower().strip()
         while building_input == 'building list' or building_input not in building_set:
             if building_input == 'building list':
@@ -19,7 +19,7 @@ if __name__ == '__main__':
                 print('Sorry, that building is not listed in the Semester Section Book. Please check to make sure you have correctly entered the building name, or try a different building.')
                 building_input = input().lower().strip()
 
-        print('Please enter a room number within that building. If you would like a list of rooms in the building you selected, enter "Room List":')
+        print('Please enter a room number within that building. If you would like a list of rooms in the building you selected, enter "Room List" (without quotes):')
         room_input = input().lower().strip()
         while room_input == 'room list' or room_input not in room_set[building_input]:
             if room_input == 'room list':
@@ -29,7 +29,7 @@ if __name__ == '__main__':
                 print('Please enter one of these rooms. If you would like the list again, re-enter "Room List":')
                 room_input = input().lower().strip()
             elif room_input not in room_set[room_input]:
-                print('Sorry, that room is either not listed in the Semester Section Book, or is not located in the building you have selected. Please check to make sure you have correctly entered the room number, or try a different room.')
+                print('Sorry, that room is either not listed in the Semester Section Book, or is not located in the building you have selected. Please check to make sure you have correctly entered the room number, or try a different room. To see a list of all available rooms, enter "Room List" (without quotes):')
                 room_input = input().lower().strip()
         print(f'You have selected {title_refactor(building_input)} room {room_input.title()}. This room is occupied at the following times. Please note that the room may also be occupied at times not listed below.')
         input_key = f'{building_input} : {room_input}'
@@ -49,11 +49,3 @@ if __name__ == '__main__':
             cont_input = input().lower().strip()
         if cont_input == 'no':
             cont = False
-        else:
-            print('Would you like to clear your previous search results? Enter "yes" or "no":')
-            clear_input = input().lower().strip()
-            while clear_input not in ['yes', 'no']:
-                print('Please enter "yes" or "no":')
-                clear_input = input().lower().strip()
-            if clear_input == 'yes':
-                system('clear')
