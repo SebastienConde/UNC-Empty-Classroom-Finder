@@ -31,7 +31,7 @@ Before following these steps, see above to ensure you have all necessary depende
 
 2. Download this GitHub repo as a zip file and extract it. Locate the file you have just extracted (likely in your downloads folder), and open it. If you see another folder, drag this folder to your downloads folder, and open it. You should see a file called ```pdfscraper.py```. Double-click to open it on Mac. On Windows, double-click and open it with Notepad.
 
-3. Near the top of the file that just opened, you should see a line that says ```doc = r'pdf_file_goes_here'```. Delete the ```pdf_file_goes_here``` and paste the pathname you have copied from the SSB. The line should now look something like this ```doc = r'/Users/sebastienconde/Desktop/2242-SSB-10-9-23.pdf'``` or ```doc = r'C:\Users\sebastienconde\Desktop\2242-SSB-10-9-23.pdf'```, except you'll have a different name in yours. Save the file you have just edited, and exit.
+3. Near the top of the file that just opened, you should see a line that says ```doc = r'pdf_file_goes_here'```. Delete the ```pdf_file_goes_here``` and paste the pathname you have copied from the SSB. The line should now look something like this ```doc = r'/Users/sebastienconde/Desktop/2242-SSB-10-9-23.pdf'``` or ```doc = r'C:\Users\sebastienconde\Desktop\2242-SSB-10-9-23.pdf'```, except you'll have a different name in yours. **Please make sure the file has exactly one pair of quotes around it as shown above.** Save the file you have just edited, and exit.
 
 4. Located the folder downloaded from GitHub. It should be called ```UNC-Empty-Classroom-Finder-main```. Copy the pathname of the folder. If you're unsure how to do this, see step 1, it's the exact same process.
 
