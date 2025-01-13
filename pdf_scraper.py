@@ -5,7 +5,6 @@ from tqdm import tqdm
 from college_class import CollegeClass
 from refactoring_funcs import hall_refactor
 
-doc = r'pdf_file_goes_here'
 
 bldg_pattern = r'(?s)Bldg: (.*?)(?=Room|\n)'  # matches 'Bldg: "
 room_pattern = r'(?s)Room: (.*?)(?=Days|\n)'  # matches 'Room: '"
@@ -17,7 +16,13 @@ room_set = defaultdict(list)   # set to hold all room names indexed by buildings
 class_dict = defaultdict(list)  # dict where keys are building and room, and values are days and class times
 
 
-def pdf_scraper():
+def pdf_scraper(ssb_input):
+    if ssb_input == 'a':
+        doc = 'SSB_2024_Spring.pdf'
+    elif ssb_input == 'b':
+        doc = 'SSB_2024_Summer.pdf'
+    else:
+        doc = 'SSB_2024_Fall.pdf'
     pdf = pymupdf.open(doc)
 
     for i in tqdm(range(pdf.page_count), desc='Generating classroom hash table', unit='pages'):

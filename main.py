@@ -1,9 +1,19 @@
-from pdf_scraper import *
+from pdf_scraper import building_set, room_set, class_dict, pdf_scraper
 from refactoring_funcs import day_refactor, military_to_standard, title_refactor
 from os import system
 
 if __name__ == '__main__':
-    pdf_scraper()
+    print("Enter the corresponding number for the year's semester section book would you like to search.")
+    print('A: 2024 Spring Semester')
+    print('B: 202 Summer Semester')
+    print('C: 2024 Fall Semester')
+    ssb_input = input().lower().strip()
+    while ssb_input not in {'a', 'b', 'c'}:
+        print('Invalid input. Please try again.')
+        ssb_input = input().lower().strip()
+
+
+    pdf_scraper(ssb_input)
     cont = True
     while cont:
         print('Please enter a building. If you would like a list of buildings to choose from, enter "Building List" (without quotes):')
