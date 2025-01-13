@@ -3,13 +3,13 @@ from refactoring_funcs import day_refactor, military_to_standard, title_refactor
 from os import system
 
 if __name__ == '__main__':
-    print("Enter the corresponding number for the year's semester section book would you like to search.")
+    print("Enter the corresponding letter for the year's semester section book would you like to search.")
     print('A: 2024 Spring Semester')
-    print('B: 202 Summer Semester')
+    print('B: 2024 Summer Semester')
     print('C: 2024 Fall Semester')
     ssb_input = input().lower().strip()
     while ssb_input not in {'a', 'b', 'c'}:
-        print('Invalid input. Please try again.')
+        print('Invalid input. Please enter A, B, or C.".')
         ssb_input = input().lower().strip()
 
 
